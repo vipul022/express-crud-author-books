@@ -1,11 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+var exphbs  = require('express-handlebars');
 const app = express();
 
 const authorRouter = require("./routes/author_routes.js")
 const PORT = 3000
 
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 //! MIDDLEWARE
 //* Cors  
 app.use(cors());

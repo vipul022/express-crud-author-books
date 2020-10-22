@@ -22,4 +22,9 @@ const updateAuthor = function (req) {
     new: true,
   });
 }
-module.exports = {getAllAuthors, addAuthor, getAuthorById, updateAuthor }
+
+const deleteAuthor = function(id) {
+  console.log("deleAuthor", id)
+  return Author.findByIdAndRemove(id)
+}
+module.exports = {getAllAuthors, addAuthor, getAuthorById, updateAuthor, deleteAuthor }
