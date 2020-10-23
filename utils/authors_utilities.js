@@ -2,7 +2,14 @@
 const Author = require("../models/author")
 
 const getAllAuthors = function(req) {
-return Author.find();
+
+  let searchOptions = {}
+  console.log("req.query.name", req.query.name)
+  if (req.query.name !== null && req.query.name !== ""){
+    searchOptions.name = new RegExp(req.query.name, "i")
+  }
+  //! RegExp search for the part of the text that is passed as query and "i" makes the query string case insensitive
+return Author.find(searchOptions);
 
 }
 
@@ -24,7 +31,7 @@ const updateAuthor = function (req) {
 }
 
 const deleteAuthor = function(id) {
-  console.log("deleAuthor", id)
+  // console.log("deleAuthor", )
   return Author.findByIdAndRemove(id)
 }
 module.exports = {getAllAuthors, addAuthor, getAuthorById, updateAuthor, deleteAuthor }
