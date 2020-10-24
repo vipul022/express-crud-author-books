@@ -4,7 +4,7 @@ const Author = require("../models/author")
 const getAllAuthors = function(req) {
 
   let searchOptions = {}
-  console.log("req.query.name", req.query.name)
+  // console.log("req.query.name", req.query.name)
   if (req.query.name !== null && req.query.name !== ""){
     searchOptions.name = new RegExp(req.query.name, "i")
   }
@@ -14,7 +14,7 @@ return Author.find(searchOptions);
 }
 
 const addAuthor = function(req) {
-  console.log("req.body=>", req.body)
+  // console.log("req.body=>", req.body)
   return new Author(req.body);
 }
 

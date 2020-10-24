@@ -3,8 +3,11 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 var exphbs  = require('express-handlebars');
 const app = express();
+require("dotenv").config();
+
 
 const authorRouter = require("./routes/author_routes.js")
+const bookRouter = require("./routes/books_routes.js")
 const PORT = 3000
 
 app.engine('handlebars', exphbs());
@@ -21,7 +24,7 @@ app.use(
   })
 );
 
-const dbConn = "mongodb://localhost/library_app";
+const dbConn = process.env.MONGODB_URI || "mongodb://localhost/library_app";
 
 mongoose.connect(
   dbConn,
@@ -41,7 +44,7 @@ mongoose.connect(
 
 
 app.use("/authors", authorRouter);
-
+app.use("/books", bookRouter)
 app.listen(PORT, () => {
 console.log(`listening to localhost: ${PORT}`)
 })
